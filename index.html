@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: La palabra reservada 'this' en JavaScript</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <h1>La palabra reservada 'this' en JavaScript</h1>
+    
+    <p>En JavaScript, la palabra reservada 'this' es un concepto importante que se refiere al contexto de ejecución actual. Su valor puede cambiar dependiendo de cómo y dónde se use.</p>
+    
+    <h2>1. 'this' en el contexto global</h2>
+    <p>En el contexto global (fuera de cualquier función), 'this' se refiere al objeto global. En un navegador, esto generalmente es el objeto 'window'.</p>
+    <code>
+        console.log(this === window); // true (en un navegador)
+    </code>
+    
+    <h2>2. 'this' en métodos de objetos</h2>
+    <p>Cuando 'this' se usa dentro de un método de un objeto, se refiere al objeto que contiene el método.</p>
+    <code>
+        const persona = {
+            nombre: "Juan",
+            saludar: function() {
+                console.log("Hola, soy " + this.nombre);
+            }
+        };
+        
+        persona.saludar(); // Imprime: "Hola, soy Juan"
+    </code>
+    
+    <h2>3. 'this' en funciones regulares</h2>
+    <p>En una función regular, el valor de 'this' depende de cómo se llama la función.</p>
+    <code>
+        function mostrarThis() {
+            console.log(this);
+        }
+        
+        mostrarThis(); // En modo no estricto: objeto window o global
+                       // En modo estricto: undefined
+    </code>
+    
+    <h2>4. 'this' en funciones flecha</h2>
+    <p>Las funciones flecha no tienen su propio 'this'. Heredan el 'this' del ámbito que las rodea.</p>
+    <code>
+        const objeto = {
+            método: function() {
+                const flecha = () => {
+                    console.log(this);
+                };
+                flecha();
+            }
+        };
+        
+        objeto.método(); // 'this' se refiere a 'objeto'
+    </code>
+    
+    <div class="nota">
+        <strong>Nota:</strong> El comportamiento de 'this' puede ser confuso al principio. La práctica y la experimentación son clave para entenderlo completamente.
+    </div>
+    
+</body>
+</html>
